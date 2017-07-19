@@ -1,0 +1,13 @@
+import requests
+
+O_AUTH = '02c840b8252de6a6901ea61214f2f0f65ca7623d'
+
+def shortener(url):
+    address = 'https://api-ssl.bitly.com/v3/shorten?access_token={0}&longUrl={1}'
+    response = requests.get(address.format(O_AUTH, url))
+    all_data = response.json()
+    short_url = all_data['data']['url']
+
+    return short_url
+
+print(shortener('https://www.google.com'))
